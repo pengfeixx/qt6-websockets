@@ -30,8 +30,7 @@ Files: tests/*
 Copyright: 2016 Kurt Pattyn <pattyn.kurt@gmail.com>
 License: GPL-3 with Qt-1.0 exception
 
-Files: conanfile.py
-       tests/auto/qml/qmlwebsockets/tst_qmlwebsockets.*
+Files: tests/auto/qml/qmlwebsockets/tst_qmlwebsockets.*
 Copyright: 2016-2021 The Qt Company Ltd.
 License: GPL-3 with Qt-1.0 exception
 

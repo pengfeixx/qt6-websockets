@@ -1,31 +1,31 @@
 Source: qt6-websockets
 Section: libs
-Priority: optional
 Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Patrick Franz <deltaone@debian.org>,
-Build-Depends: cmake (>= 3.24~),
-               debhelper-compat (= 13),
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-pkgkde-symbolshelper,
+               dh-sequence-qmldeps,
+               cmake (>= 3.24~),
                libgl-dev,
                libssl-dev,
                libvulkan-dev [linux-any],
                libxcb-xkb-dev,
                ninja-build,
-               pkg-config,
                pkg-kde-tools,
-               qt6-base-dev (>= 6.8.0+dfsg~),
-               qt6-base-private-dev (>= 6.8.0+dfsg~),
-               qt6-declarative-dev (>= 6.8.0+dfsg~),
-               qt6-declarative-private-dev (>= 6.8.0+dfsg~),
-Build-Depends-Indep: qt6-base-dev (>= 6.8~) <!nodoc>,
-                     qt6-documentation-tools (>= 6.8~) <!nodoc>,
-Standards-Version: 4.6.2
+               pkgconf,
+               qt6-base-dev (>= 6.11.2+dfsg~),
+               qt6-base-private-dev (>= 6.11.2+dfsg~),
+               qt6-declarative-dev (>= 6.11.2+dfsg~),
+               qt6-declarative-private-dev (>= 6.11.2+dfsg~),
+Build-Depends-Indep: qt6-base-dev (>= 6.11~) <!nodoc>,
+                     qt6-documentation-tools (>= 6.11~) <!nodoc>,
+Standards-Version: 4.7.4
 Homepage: https://www.qt.io/developers/
 Vcs-Browser: https://salsa.debian.org/qt-kde-team/qt6/qt6-websockets
 Vcs-Git: https://salsa.debian.org/qt-kde-team/qt6/qt6-websockets.git
-Rules-Requires-Root: no
 
 Package: libqt6websockets6
-Provides: qt6-websockets-private-abi (= 6.8.0),
+Provides: qt6-websockets-private-abi (= 6.12.0)
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends},
@@ -41,7 +41,7 @@ Package: qml6-module-qtwebsockets
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends},
-Depends: ${misc:Depends}, ${shlibs:Depends},
+Depends: ${misc:Depends}, ${qml6:Depends}, ${shlibs:Depends},
 Description: Qt 6 WebSockets QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -49,13 +49,13 @@ Description: Qt 6 WebSockets QML module
  This package contains the Qt Web Sockets QML module.
 
 Package: qt6-websockets-dev
-Provides: libqt6websockets6-dev (= ${binary:Version}),
 Architecture: any
 Multi-Arch: same
 Section: libdevel
-Depends: libqt6websockets6 (= ${binary:Version}), qt6-base-dev, ${misc:Depends},
-Breaks: libqt6websockets6-dev (<< 6.4.0-2~),
-Replaces: libqt6websockets6-dev (<< 6.4.0-2~),
+Depends: libqt6websockets6 (= ${binary:Version}),
+         qml6-module-qtwebsockets (= ${binary:Version}),
+         qt6-base-dev,
+         ${misc:Depends},
 Description: Qt 6 WebSockets library - development files
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -78,6 +78,7 @@ Description: Qt 6 WebSockets library - private development files
  Use at your own risk.
 
 Package: qt6-websockets-doc
+Build-Profiles: <!nodoc>
 Architecture: all
 Section: doc
 Depends: qt6-base-doc, ${misc:Depends},
@@ -89,6 +90,7 @@ Description: Qt 6 web sockets documentation
  This package contains the documentation for the Qt 6 web sockets.
 
 Package: qt6-websockets-doc-html
+Build-Profiles: <!nodoc>
 Architecture: all
 Section: doc
 Depends: qt6-base-doc-html, ${misc:Depends},
@@ -100,6 +102,7 @@ Description: Qt 6 web sockets HTML documentation
  This package contains the HTML documentation for the Qt 6 web sockets.
 
 Package: qt6-websockets-doc-dev
+Build-Profiles: <!nodoc>
 Architecture: all
 Section: libdevel
 Depends: qt6-base-doc-dev, ${misc:Depends},
